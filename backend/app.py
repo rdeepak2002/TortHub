@@ -23,7 +23,7 @@ def gen(camera):
 
 @app.route('/sensor_stats')
 def sensor_stats():
-    sensor = 2302;
+    sensor = Adafruit_DHT.DHT22;
     pin = 4;
     try:
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
