@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-from importlib import import_module
 import os
+import Adafruit_DHT
+from importlib import import_module
 from flask import Flask, send_from_directory, Response
 from camera_opencv import Camera
 
@@ -14,14 +15,21 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
-
 def gen(camera):
     while True:
         frame = camera.get_frame()
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/sensor_stats')
+def sensor_stats():
+    sensor = 2302;
+    pin = 4;
+    try:
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+        return Response(temperature)
+    catch(error):
+        return Resposne(error)
 
 @app.route('/video_feed')
 def video_feed():

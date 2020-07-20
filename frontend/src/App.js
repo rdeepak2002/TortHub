@@ -1,12 +1,11 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <img alt="stream" src="/video_feed"></img>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <img alt="stream" src="/video_feed"></img>
+      </div>
+    );
+  }
 }
-
-export default App;
