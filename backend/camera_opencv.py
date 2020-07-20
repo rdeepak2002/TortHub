@@ -2,7 +2,6 @@ import os
 import cv2
 from base_camera import BaseCamera
 
-
 class Camera(BaseCamera):
     video_source = 0
 
@@ -26,7 +25,6 @@ class Camera(BaseCamera):
         while True:
             # read current frame
             _, img = camera.read()
-
 
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             # Detect the faces
