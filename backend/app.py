@@ -28,8 +28,8 @@ def sensor_stats():
     try:
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
         return Response(temperature)
-    catch(error):
-        return Resposne(error)
+    except:
+        return Response("Error with reading from sensor.")
 
 @app.route('/video_feed')
 def video_feed():
