@@ -1,9 +1,11 @@
-#!/usr/bin/env python
-import os
-import Adafruit_DHT
 from importlib import import_module
 from flask import Flask, send_from_directory, Response
 from camera_opencv import Camera
+import os
+try:
+    import Adafruit_DHT
+except:
+    print("Unable to import Adafruit_DHT!")
 
 app = Flask(__name__, static_folder='build')
 
@@ -20,13 +22,14 @@ def gen(camera):
         frame = camera.get_frame()
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-
-@app.route('/sensor_stats')
+@app.route('/sensor_stats', methods=['GET'])
 def sensor_stats():
-    sensor = Adafruit_DHT.DHT22;
-    pin = 4;
     try:
+        sensor = Adafruit_DHT.DHT22;
+        pin = 4;
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+        print(temperature)
+        print(humidity)
         return Response(temperature)
     except:
         return Response("Error with reading from sensor.")

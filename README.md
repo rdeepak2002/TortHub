@@ -11,3 +11,4 @@ Deepak Ramalingam
   * sudo apt-get install libqtgui4
   * sudo apt-get install python3-pyqt5
   * sudo apt-get install libqt4-test
+  * sudo apt install python3-gunicorn
