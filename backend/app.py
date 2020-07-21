@@ -30,7 +30,7 @@ def sensor_stats():
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
         print(temperature)
         print(humidity)
-        return Response(temperature)
+        return Response("T:" + temperature + "H:" + humidity)
     except:
         return Response("Error with reading from sensor.")
 
