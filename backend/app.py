@@ -29,8 +29,8 @@ def sensor_stats():
         print(humidity)
         print(temperature)
         return jsonify(
-            temperature=temperature,
-            humidity=humidity
+            'temperature'=temperature,
+            'humidity'=humidity
         )
     except:
         return Response("Error with reading from sensor.")
