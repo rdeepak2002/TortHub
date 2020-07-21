@@ -28,11 +28,8 @@ def sensor_stats():
         sensor = Adafruit_DHT.DHT22;
         pin = 4;
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-        print(temperature)
-        print(humidity)
-        result = "T:" + temperature + "H:" + humidity
-        print(result)
-        return Response()
+        result = "T:" + str(temperature) + "H:" + str(humidity)
+        return Response(result)
     except:
         return Response("Error with reading from sensor.")
 
