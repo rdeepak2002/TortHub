@@ -38,7 +38,7 @@ class Camera(BaseCamera):
 
             text = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
             font                    = cv2.FONT_HERSHEY_SIMPLEX
-            fontScale               = 2
+            fontScale               = 1
             whiteColor              = (255,255,255)
             blackColor              = (0, 0, 0)
             thickLine               = 6
