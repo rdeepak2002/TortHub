@@ -28,10 +28,10 @@ def sensor_stats():
         humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
         print(humidity)
         print(temperature)
-        return jsonify(
+        return jsonify({
             'temperature':str(temperature),
             'humidity':str(humidity)
-        )
+        })
     except:
         return Response("Error with reading from sensor.")
 
