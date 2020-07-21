@@ -24,16 +24,16 @@ def gen(camera):
 
 @app.route('/sensor_stats', methods=['GET'])
 def sensor_stats():
-    try:
-        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
-        print(humidity)
-        print(temperature)
-        return jsonify({
-            'temperature':str(temperature),
-            'humidity':str(humidity)
-        })
-    except:
-        return Response("Error with reading from sensor.")
+    #try:
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+    print(humidity)
+    print(temperature)
+    return jsonify({
+        'temperature':str(temperature),
+        'humidity':str(humidity)
+    })
+    # except:
+    #     return Response("Error with reading from sensor.")
 
 @app.route('/video_feed')
 def video_feed():
