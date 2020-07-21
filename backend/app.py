@@ -1,5 +1,5 @@
 from importlib import import_module
-from flask import Flask, Response, json, send_from_directory
+from flask import Flask, Response, jsonify, send_from_directory
 from camera_opencv import Camera
 import os
 try:
