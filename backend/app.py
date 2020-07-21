@@ -1,5 +1,5 @@
 from importlib import import_module
-from flask import Flask, send_from_directory, Response
+from flask import Flask, Response, json, send_from_directory
 from camera_opencv import Camera
 import os
 try:
@@ -25,11 +25,11 @@ def gen(camera):
 @app.route('/sensor_stats', methods=['GET'])
 def sensor_stats():
     try:
-        sensor = Adafruit_DHT.DHT22;
-        pin = 4;
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-        result = "T:" + str(temperature) + "H:" + str(humidity)
-        return Response(result)
+        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+        return jsonify(
+            temperature=temperature,
+            humidity=humidity
+        )
     except:
         return Response("Error with reading from sensor.")
 
