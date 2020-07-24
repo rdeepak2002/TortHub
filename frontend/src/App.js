@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
-
-import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Stream from "./components/stream.component.js"
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      temperature: undefined,
-      humidity: undefined
-    };
-    this.getStats = this.getStats.bind(this);
-  }
-
-  getStats() {
-    axios.get("/sensor_stats").then(
-      res => {
-        console.log(res);
-      },
-      error => {
-        console.log(error);
-      });
-  }
-
   render() {
     return (
-      <div className="App">
-        <img alt="stream" src="/video_feed"></img>
-        <button onClick={this.getStats}>get stats</button>
-      </div>
+      <Router>
+        <Switch>
+          <Route path='*'>
+            <Stream/>
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
