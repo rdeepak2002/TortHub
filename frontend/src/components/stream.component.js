@@ -22,6 +22,7 @@ export default class Stream extends Component {
   }
 
   getStats() {
+    console.log("getting stats");
     axios.get('/sensor_stats').then(
       res => {
         this.setState({temperature: (9.0/5.0)*res.data.temperature+32, humidity: res.data.humidity});
