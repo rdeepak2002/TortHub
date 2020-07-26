@@ -15,8 +15,8 @@ export default class Stream extends Component {
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
     this.getStats = this.getStats.bind(this);
-    this.turnOffLight = this.getStats.bind(this);
-    this.turnOnLight = this.getStats.bind(this);
+    this.turnOffLight = this.turnOffLight.bind(this);
+    this.turnOnLight = this.turnOnLight.bind(this);
   }
 
   handleImageLoaded() {
