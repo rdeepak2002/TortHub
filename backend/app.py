@@ -51,7 +51,7 @@ def turnoff_light():
         return Response("Error with turning off light.")
 
 @app.route('/turnon_light', methods=['GET'])
-def turnoff_light():
+def turnon_light():
     try:
         rfdevice = RFDevice(17)
         rfdevice.enable_tx()
