@@ -8,6 +8,8 @@ except:
     print("Error: Unable to import Adafruit_DHT!")
 try:
     from rpi_rf import RFDevice
+except:
+    print("Error: Unable to import RFDevice from rpi_rf!")
 
 app = Flask(__name__, static_folder='build')
 
