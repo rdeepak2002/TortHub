@@ -13,6 +13,11 @@ except:
 
 app = Flask(__name__, static_folder='build')
 
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
@@ -21,10 +26,9 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/sensor_stats', methods=['GET'])
 def sensor_stats():
@@ -62,10 +66,6 @@ def turnon_light():
         return Response("Light turned on!")
     except:
         return Response("Error with turning on light.")
-
-@app.route('/video_feed')
-def video_feed():
-    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True, debug=True)

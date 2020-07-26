@@ -10,6 +10,7 @@ export default class Stream extends Component {
       temperature: undefined,
       humidity: undefined,
       imageLoaded: false,
+      tempHumidLoaded: false,
       lightLoading: false
     };
 
@@ -25,18 +26,17 @@ export default class Stream extends Component {
   }
 
   getStats() {
-    console.log("getting stats");
     axios.get('/sensor_stats').then(
       res => {
-        this.setState({temperature: (9.0/5.0)*res.data.temperature+32, humidity: res.data.humidity});
+        this.setState({temperature: (9.0/5.0)*res.data.temperature+32, humidity: res.data.humidity, tempHumidLoaded: true});
       },
       error => {
+        this.setState({tempHumidLoaded: true});
         console.log(error);
       });
   }
 
   turnOffLight() {
-    console.log("turning off light");
     this.setState({lightLoading: true});
 
     axios.get('/turnoff_light').then(
@@ -50,7 +50,6 @@ export default class Stream extends Component {
   }
 
   turnOnLight() {
-    console.log("turning on light");
     this.setState({lightLoading: true});
 
     axios.get('/turnon_light').then(
@@ -69,7 +68,7 @@ export default class Stream extends Component {
 
   render() {
     return (
-      <div className={!this.state.imageLoaded ? 'hidden' : 'visible'}>
+      <div className={(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
         <img alt='stream' src='/video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
         {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
         {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
