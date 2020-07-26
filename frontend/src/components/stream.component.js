@@ -42,9 +42,13 @@ export default class Stream extends Component {
           <Col>
             <Row>
               <Image rounded fluid alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}/>
-              {this.state.temperature && (<p>Temperature: {Math.round(this.state.temperature)}°F</p>)}
-              {this.state.humidity && (<p>Humidity: {Math.round(this.state.humidity)}%</p>)}
             </Row>
+            {(this.state.temperature && this.state.humidity) &&
+              <Row>
+                <p>Temperature: {Math.round(this.state.temperature)}°F</p>
+                <p>Humidity: {Math.round(this.state.humidity)}%</p>
+              </Row>
+            }
             <Row>
               <Button onClick={this.turnOffLight}>OFF</Button>
               <Button onClick={this.turnOnLight}>ON</Button>
