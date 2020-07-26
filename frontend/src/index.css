@@ -7,9 +7,7 @@
 
 /* video feed */
 .video_feed {
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  width: 100% !important;
 }
 
 /* tree animation */
