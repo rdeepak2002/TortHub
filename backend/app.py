@@ -5,7 +5,9 @@ import os
 try:
     import Adafruit_DHT
 except:
-    print("Unable to import Adafruit_DHT!")
+    print("Error: Unable to import Adafruit_DHT!")
+try:
+    from rpi_rf import RFDevice
 
 app = Flask(__name__, static_folder='build')
 
@@ -34,6 +36,28 @@ def sensor_stats():
         })
     except:
         return Response("Error with reading from sensor.")
+
+@app.route('/turnoff_light', methods=['GET'])
+def turnoff_light():
+    try:
+        rfdevice = RFDevice(17)
+        rfdevice.enable_tx()
+        rfdevice.tx_repeat = 10
+        rfdevice.tx_code(4478268, 1, 186, 24)
+        rfdevice.cleanup()
+    except:
+        return Response("Error with turning off light.")
+
+@app.route('/turnon_light', methods=['GET'])
+def turnoff_light():
+    try:
+        rfdevice = RFDevice(17)
+        rfdevice.enable_tx()
+        rfdevice.tx_repeat = 10
+        rfdevice.tx_code(4478259, 1, 186, 24)
+        rfdevice.cleanup()
+    except:
+        return Response("Error with turning on light.")
 
 @app.route('/video_feed')
 def video_feed():

@@ -25,6 +25,7 @@ pip3 install -r requirements.txt
 pip3 install Flask
 pip3 install opencv-python==3.4.3.18
 pip3 install Adafruit_DHT
+pip3 install rpi-rf
 ```
 
 ## Extra Installations for OpenCV
