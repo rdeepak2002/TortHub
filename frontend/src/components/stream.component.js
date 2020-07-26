@@ -68,12 +68,20 @@ export default class Stream extends Component {
 
   render() {
     return (
-      <div className={(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
-        <img alt='stream' src='/video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
-        {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
-        {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
-        <button onClick={this.turnOffLight}>OFF</button>
-        <button onClick={this.turnOnLight}>ON</button>
+      <div>
+        {(this.state.imageLoaded && this.state.tempHumidLoaded) ? (
+          <div>
+            <img alt='stream' src='/video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
+            {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
+            {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
+            <button onClick={this.turnOffLight}>OFF</button>
+            <button onClick={this.turnOnLight}>ON</button>
+          </div>
+        ) : (
+          <div>
+            Loading
+          </div>
+        )}
       </div>
     );
   }
