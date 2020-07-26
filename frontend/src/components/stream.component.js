@@ -29,9 +29,11 @@ export default class Stream extends Component {
     axios.get('/sensor_stats').then(
       res => {
         if(res.data.temperature && res.data.humidity) {
-          this.setState({temperature: (9.0/5.0)*res.data.temperature+32, humidity: res.data.humidity});
+          this.setState({temperature: (9.0/5.0)*res.data.temperature+32, humidity: res.data.humidity, tempHumidLoaded: true});
         }
-        this.setState({tempHumidLoaded: true});
+        else {
+          this.setState({tempHumidLoaded: true});
+        }
       },
       error => {
         this.setState({tempHumidLoaded: true});
