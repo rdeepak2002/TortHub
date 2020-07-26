@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TreeLoader from './tree-loader.component.js';
+
 import axios from 'axios';
 
 export default class Stream extends Component {
@@ -20,9 +22,29 @@ export default class Stream extends Component {
     this.turnOnLight = this.turnOnLight.bind(this);
   }
 
+  componentDidMount() {
+    this.getStats();
+  }
+
+  render() {
+    return (
+      <div>
+        <div className={!(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
+          <TreeLoader/>
+        </div>
+        <div className={(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
+          <img alt='stream' src='/video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
+          {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
+          {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
+          <button onClick={this.turnOffLight}>OFF</button>
+          <button onClick={this.turnOnLight}>ON</button>
+        </div>
+      </div>
+    );
+  }
+
   handleImageLoaded() {
     this.setState({ imageLoaded: true });
-    console.log('image loaded');
   }
 
   getStats() {
@@ -65,27 +87,5 @@ export default class Stream extends Component {
       error => {
         console.log(error);
       });
-  }
-
-  componentDidMount() {
-    this.getStats();
-  }
-
-  render() {
-    return (
-
-      <div>
-        <div className={!(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
-          Loading
-        </div>
-        <div className={(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
-          <img alt='stream' src='/video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
-          {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
-          {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
-          <button onClick={this.turnOffLight}>OFF</button>
-          <button onClick={this.turnOnLight}>ON</button>
-        </div>
-      </div>
-    );
   }
 }
