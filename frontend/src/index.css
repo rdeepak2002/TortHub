@@ -5,20 +5,15 @@
   background-color: white;
 }
 
-/* video feed image */
-.video_feed {
-  width: 100%;
-}
-
 /* tree animation */
 .tree-svg {
-  width:258px;
-  height:258px;
-  display:block;
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
+  width: 258px;
+  height: 258px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .tree {

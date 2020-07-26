@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 import TreeLoader from './tree-loader.component';
 import axios from 'axios';
 
@@ -40,13 +40,15 @@ export default class Stream extends Component {
         </Row>
         <Row className={feedready ? 'visible' : 'hidden'}>
           <Col>
-            <img alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
-            {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
-            {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
-            <div>
+            <Row>
+              <Image rounded fluid alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}/>
+              {this.state.temperature && (<p>Temperature: {Math.round(this.state.temperature)}°F</p>)}
+              {this.state.humidity && (<p>Humidity: {Math.round(this.state.humidity)}%</p>)}
+            </Row>
+            <Row>
               <Button onClick={this.turnOffLight}>OFF</Button>
               <Button onClick={this.turnOnLight}>ON</Button>
-            </div>
+            </Row>
           </Col>
         </Row>
       </Container>
