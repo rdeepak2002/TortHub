@@ -34,8 +34,6 @@ def video_feed():
 def sensor_stats():
     try:
         humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
-        print(humidity)
-        print(temperature)
         return jsonify({
             'temperature':str(temperature),
             'humidity':str(humidity)
