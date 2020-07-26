@@ -41,7 +41,7 @@ export default class Stream extends Component {
         <Row className={feedready ? 'visible' : 'hidden'}>
           <Col>
             <Row>
-              <Image rounded fluid alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}/>
+              <Image className='video_feed' rounded fluid alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}/>
             </Row>
             {(this.state.temperature && this.state.humidity) &&
               <Row>

@@ -5,6 +5,13 @@
   background-color: white;
 }
 
+/* video feed */
+.video_feed {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* tree animation */
 .tree-svg {
   width: 258px;
