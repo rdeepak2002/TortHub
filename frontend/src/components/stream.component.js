@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
-import TreeLoader from './tree-loader.component.js';
-
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import TreeLoader from './tree-loader.component';
 import axios from 'axios';
 
 export default class Stream extends Component {
@@ -13,6 +12,7 @@ export default class Stream extends Component {
       humidity: undefined,
       imageLoaded: false,
       tempHumidLoaded: false,
+      svgLoaded: false,
       lightLoading: false
     };
 
@@ -24,22 +24,32 @@ export default class Stream extends Component {
 
   componentDidMount() {
     this.getStats();
+
+    setTimeout(function(){
+      this.setState({svgLoaded: true});
+    }.bind(this), 2450);
   }
 
   render() {
+    const feedready = (this.state.imageLoaded && this.state.tempHumidLoaded && this.state.svgLoaded);
+
     return (
-      <div>
-        <div className={!(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
+      <Container>
+        <Row className={!feedready ? 'visible' : 'hidden'}>
           <TreeLoader/>
-        </div>
-        <div className={(this.state.imageLoaded && this.state.tempHumidLoaded) ? 'visible' : 'hidden'}>
-          <img alt='stream' src='/video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
-          {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
-          {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
-          <button onClick={this.turnOffLight}>OFF</button>
-          <button onClick={this.turnOnLight}>ON</button>
-        </div>
-      </div>
+        </Row>
+        <Row className={feedready ? 'visible' : 'hidden'}>
+          <Col>
+            <img alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}></img>
+            {this.state.temperature && (<div>Temperature: {this.state.temperature}°F</div>)}
+            {this.state.humidity && (<div>Humidity: {this.state.humidity}%</div>)}
+            <div>
+              <Button onClick={this.turnOffLight}>OFF</Button>
+              <Button onClick={this.turnOnLight}>ON</Button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
@@ -73,6 +83,7 @@ export default class Stream extends Component {
       },
       error => {
         console.log(error);
+        this.setState({lightLoading: false});
       });
   }
 
@@ -86,6 +97,7 @@ export default class Stream extends Component {
       },
       error => {
         console.log(error);
+        this.setState({lightLoading: false});
       });
   }
 }
