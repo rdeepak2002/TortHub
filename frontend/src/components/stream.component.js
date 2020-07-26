@@ -41,6 +41,7 @@ export default class Stream extends Component {
 
     axios.get('/turnoff_light').then(
       res => {
+        console.log(res);
         this.setState({lightLoading: false});
       },
       error => {
@@ -54,6 +55,7 @@ export default class Stream extends Component {
 
     axios.get('/turnon_light').then(
       res => {
+        console.log(res);
         this.setState({lightLoading: false});
       },
       error => {

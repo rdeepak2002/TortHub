@@ -47,6 +47,7 @@ def turnoff_light():
         rfdevice.tx_repeat = 10
         rfdevice.tx_code(4478268, 1, 186, 24)
         rfdevice.cleanup()
+        return Response("Light turned off!")
     except:
         return Response("Error with turning off light.")
 
@@ -58,6 +59,7 @@ def turnon_light():
         rfdevice.tx_repeat = 10
         rfdevice.tx_code(4478259, 1, 186, 24)
         rfdevice.cleanup()
+        return Response("Light turned on!")
     except:
         return Response("Error with turning on light.")
 
