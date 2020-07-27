@@ -13,6 +13,7 @@ except:
 
 app = Flask(__name__, static_folder='build')
 
+
 def gen(camera):
     while True:
         frame = camera.get_frame()

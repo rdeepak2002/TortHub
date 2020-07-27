@@ -49,15 +49,7 @@ sudo apt-get install python-opencv
 
 Note: Please reboot the pi after these installations.
 
-## Autostart
-On a Raspberry Pi 4 run the following command:
-
-```sh
-sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
-```
-
-Then add the following line:
-
-```sh
-@lxterminal -e /home/pi/TortHub/launch.sh
-```
+## Connecting the Smart Plugs
+Please refer to the following resources:
+* https://youtu.be/Xe5Bj_N4Crw
+* https://github.com/milaq/rpi-rf
