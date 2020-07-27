@@ -15,12 +15,7 @@ Tortoise monitoring system with temperature / humidity sensor and night vision c
 
 Note: Please reboot the pi after these installations.
 
-## Automatically Install Pip Packages
-```sh
-pip3 install -r requirements.txt
-```
-
-## Manually Install Pip Packages
+## Install Pip Packages (OpenCV < 4.0 Works Best with the Raspberry Pi)
 ```sh
 pip3 install Flask
 pip3 install opencv-python==3.4.3.18
@@ -53,3 +48,27 @@ Note: Please reboot the pi after these installations.
 Please refer to the following resources:
 * https://youtu.be/Xe5Bj_N4Crw
 * https://github.com/milaq/rpi-rf
+
+## Auto Start
+Create a new service file
+```sh
+sudo nano /etc/systemd/system/torthubserver.service
+```
+
+Add the following content
+```sh
+[Unit]
+Description=TortHub Server Gunicorn Daemon
+After=network.target
+
+[Service]
+ExecStart=sh launch.sh
+WorkingDirectory=/home/pi/TortHub
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+```
