@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Col, Container, Row } from 'react-bootstrap';
+import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 export default class Stats extends Component {
@@ -24,6 +24,11 @@ export default class Stats extends Component {
 
     return (
       <Container>
+        <Row className={!statsready ? 'visible' : 'hidden'}>
+          <Col className='d-flex justify-content-center'>
+            <Spinner animation='border' size="lg"/>
+          </Col>
+        </Row>
         <Row className={statsready ? 'visible' : 'hidden'}>
           <Col>
             {(this.state.temperature && this.state.humidity) ?
