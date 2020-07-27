@@ -28,15 +28,21 @@
   margin-top: 40vh;
 }
 
+/* alert */
+.alert {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* titles for devices */
+.device-title {
+  margin-top: 1rem;
+}
+
+
 /* light toggle button */
 .light-btn {
   margin-top: 1rem;
   width: 10rem;
   max-width: 90%;
-}
-
-/* alert */
-.alert {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }

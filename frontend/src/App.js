@@ -4,8 +4,9 @@ import { Helmet } from 'react-helmet';
 import { Navbar, Nav } from 'react-bootstrap';
 
 import Stream from './components/stream.component';
+import DeviceControl from './components/device-control.component';
 import Stats from './components/stats.component';
-import About from './components/about.component'
+import About from './components/about.component';
 
 const TITLE = 'Tort Hub'
 
@@ -24,6 +25,7 @@ export default class App extends Component {
             <Navbar.Collapse id='basic-navbar-nav'>
               <Nav className='mr-auto'>
                 <NavLink to={'/stream'} className='nav-link' activeClassName='active'>Stream</NavLink>
+                <NavLink to={'/lights'} className='nav-link' activeClassName='active'>Lights</NavLink>
                 <NavLink to={'/stats'} className='nav-link' activeClassName='active'>Stats</NavLink>
                 <NavLink to={'/about'} className='nav-link' activeClassName='active'>About</NavLink>
               </Nav>
@@ -33,6 +35,9 @@ export default class App extends Component {
           <Switch>
             <Route exact path='/stream'>
               <Stream/>
+            </Route>
+            <Route exact path='/lights'>
+              <DeviceControl/>
             </Route>
             <Route exact path='/stats'>
               <Stats/>
