@@ -1,5 +1,5 @@
 from importlib import import_module
-from flask import Flask, Response, jsonify, send_from_directory
+from flask import Flask, Response, jsonify, send_from_directory, send_file
 from camera_opencv import Camera
 import os
 try:
@@ -64,6 +64,11 @@ def turnon_light():
         return Response("Light turned on!")
     except:
         return Response("Error with turning on light.")
+
+@app.route('/.well-known/pki-validation/<challenge>')
+def verify_ssl(challenge):
+    filename = app.root_path + '/.well-known/' + challenge
+    return send_file(filename)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True, debug=True)
