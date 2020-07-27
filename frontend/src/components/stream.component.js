@@ -47,10 +47,10 @@ export default class Stream extends Component {
             </Row>
             <Row>
               <Col className='d-flex justify-content-center'>
-                <Button className='light-btn' disabled={this.state.lightLoading ? true : false} onClick={this.turnOnLight} variant='dark'>ON</Button>
+                <Button className='light-btn' disabled={this.state.lightLoading ? true : false} onClick={this.turnOnLight} variant='dark'>ON LAMP</Button>
               </Col>
               <Col className='d-flex justify-content-center'>
-                <Button className='light-btn' disabled={this.state.lightLoading ? true : false} onClick={this.turnOffLight} variant='dark'>OFF</Button>
+                <Button className='light-btn' disabled={this.state.lightLoading ? true : false} onClick={this.turnOffLight} variant='dark'>OFF LAMP</Button>
               </Col>
             </Row>
           </Col>

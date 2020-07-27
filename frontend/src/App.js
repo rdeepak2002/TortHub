@@ -5,6 +5,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 import Stream from './components/stream.component';
 import Stats from './components/stats.component';
+import About from './components/about.component'
 
 const TITLE = 'Tort Hub'
 
@@ -24,6 +25,7 @@ export default class App extends Component {
               <Nav className='mr-auto'>
                 <NavLink to={'/stream'} className='nav-link' activeClassName='active'>Stream</NavLink>
                 <NavLink to={'/stats'} className='nav-link' activeClassName='active'>Stats</NavLink>
+                <NavLink to={'/about'} className='nav-link' activeClassName='active'>About</NavLink>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -34,6 +36,9 @@ export default class App extends Component {
             </Route>
             <Route exact path='/stats'>
               <Stats/>
+            </Route>
+            <Route exact path='/about'>
+              <About/>
             </Route>
             <Route path='*'>
               <Redirect to='/stream'/>
