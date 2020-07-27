@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
-import TreeLoader from './tree-loader.component';
+import { Button, Col, Container, Image, Row, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 export default class Stream extends Component {
@@ -17,41 +16,42 @@ export default class Stream extends Component {
     };
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
-    this.getStats = this.getStats.bind(this);
     this.turnOffLight = this.turnOffLight.bind(this);
     this.turnOnLight = this.turnOnLight.bind(this);
   }
 
   componentDidMount() {
-    this.getStats();
-
-    setTimeout(function(){
+    this.timeoutfunction = setTimeout(function(){
       this.setState({svgLoaded: true});
     }.bind(this), 2450);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timeoutfunction);
+  }
+
   render() {
-    const feedready = (this.state.imageLoaded && this.state.tempHumidLoaded && this.state.svgLoaded);
+    const feedready = (this.state.imageLoaded && this.state.svgLoaded);
 
     return (
       <Container>
         <Row className={!feedready ? 'visible' : 'hidden'}>
-          <TreeLoader/>
+          <Col className='d-flex justify-content-center'>
+            <Spinner animation='border' size="lg"/>
+          </Col>
         </Row>
         <Row className={feedready ? 'visible' : 'hidden'}>
           <Col>
             <Row>
               <Image className='video_feed' rounded fluid alt='stream' src='/video_feed' className='video_feed' onLoad={this.handleImageLoaded.bind(this)}/>
             </Row>
-            {(this.state.temperature && this.state.humidity) &&
-              <Row>
-                <p>Temperature: {Math.round(this.state.temperature)}°F</p>
-                <p>Humidity: {Math.round(this.state.humidity)}%</p>
-              </Row>
-            }
             <Row>
-              <Button onClick={this.turnOffLight}>OFF</Button>
-              <Button onClick={this.turnOnLight}>ON</Button>
+              <Col className='d-flex justify-content-center'>
+                <Button className='light-btn' disabled={this.state.lightLoading ? true : false} onClick={this.turnOnLight} variant='dark'>ON</Button>
+              </Col>
+              <Col className='d-flex justify-content-center'>
+                <Button className='light-btn' disabled={this.state.lightLoading ? true : false} onClick={this.turnOffLight} variant='dark'>OFF</Button>
+              </Col>
             </Row>
           </Col>
         </Row>
@@ -61,22 +61,6 @@ export default class Stream extends Component {
 
   handleImageLoaded() {
     this.setState({ imageLoaded: true });
-  }
-
-  getStats() {
-    axios.get('/sensor_stats').then(
-      res => {
-        if(res.data.temperature && res.data.humidity) {
-          this.setState({temperature: (9.0/5.0)*res.data.temperature+32, humidity: res.data.humidity, tempHumidLoaded: true});
-        }
-        else {
-          this.setState({tempHumidLoaded: true});
-        }
-      },
-      error => {
-        this.setState({tempHumidLoaded: true});
-        console.log(error);
-      });
   }
 
   turnOffLight() {

@@ -7,47 +7,36 @@
 
 /* video feed */
 .video_feed {
-  width: 100% !important;
-}
-
-/* tree animation */
-.tree-svg {
-  width: 258px;
-  height: 258px;
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-}
-
-.tree {
-  fill: #E73E0D;
-}
-
-.circle-mask {
-  transform-origin: 50% 90%;
-  animation: scale 5s infinite ease-out;
-}
-
-@keyframes scale {
-  0%, 100% {
-    transform: scale(0.0);
-  }
-  7%, 90% {
-    transform: scale(0.4);
-  }
-  50% {
-    transform: scale(1);
-  }
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 /* hide element */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* make element visible */
 .visible {
-  display: visible;
+  display: visible !important;
+}
+
+/* center spinner */
+.spinner-border {
+  width: 10vh !important;
+  height: 10vh !important;
+  margin-top: 40vh;
+}
+
+/* light toggle button */
+.light-btn {
+  margin-top: 1rem;
+  width: 10rem;
+  max-width: 90%;
+}
+
+/* alert */
+.alert {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
