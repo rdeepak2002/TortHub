@@ -15,12 +15,13 @@ Tortoise monitoring system with temperature / humidity sensor and night vision c
 
 Note: Please reboot the pi after these installations.
 
-## Install Pip Packages (OpenCV < 4.0 Works Best with the Raspberry Pi)
+## Install Pip Packages (OpenCV < 4.0 Works Best with the Raspberry Pi 4)
 ```sh
 pip3 install Flask
 pip3 install opencv-python==3.4.3.18
 pip3 install Adafruit_DHT
 pip3 install rpi-rf
+pip3 install pymongo
 ```
 
 ## Extra Installations for OpenCV
