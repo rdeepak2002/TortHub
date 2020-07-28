@@ -2,6 +2,7 @@
 import time
 import datetime
 import pymongo
+import board
 try:
     import adafruit_dht
 except:
