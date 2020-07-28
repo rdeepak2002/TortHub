@@ -19,8 +19,8 @@ export default class App extends Component {
         </Helmet>
 
         <Router>
-          <Container>
-            <Navbar sticky='top' bg='light' expand='lg'>
+          <Navbar sticky='top' bg='light' expand='lg'>
+            <Container>
               <Navbar.Brand href='/stream'>TortHub</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
@@ -31,8 +31,8 @@ export default class App extends Component {
                   <NavLink to={'/about'} className='nav-link' activeClassName='active'>About</NavLink>
                 </Nav>
               </Navbar.Collapse>
-            </Navbar>
-          </Container>
+            </Container>
+          </Navbar>
 
           <Switch>
             <Route exact path='/stream'>
