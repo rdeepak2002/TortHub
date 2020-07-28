@@ -24,6 +24,8 @@ def update_temp_humid_data():
         temperature = dhtDevice.temperature
         humidity = dhtDevice.humidity
         # humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+        print(temperature)
+        print(humidity)
         updateTempHumidInDb(temperature, humidity)
         # except:
         #     print("error reading from sensor")
