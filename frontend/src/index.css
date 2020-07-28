@@ -46,3 +46,14 @@
   width: 10rem;
   max-width: 90%;
 }
+
+/* header in about page */
+.about-header {
+  margin-top: 1rem;
+}
+
+/* information on temperature and humidity */
+.stats-info {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

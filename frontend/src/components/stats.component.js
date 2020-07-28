@@ -35,10 +35,10 @@ export default class Stats extends Component {
               (<Row>
                 <Col>
                   <Row>
-                    <p>Temperature: {Math.round(this.state.temperature)}°F</p>
+                    <p className='stats-info'>Temperature: {Math.round(this.state.temperature)}°F</p>
                   </Row>
                   <Row>
-                    <p>Humidity: {Math.round(this.state.humidity)}%</p>
+                    <p className='stats-info'>Humidity: {Math.round(this.state.humidity)}%</p>
                   </Row>
                 </Col>
               </Row>):

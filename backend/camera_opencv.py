@@ -22,19 +22,8 @@ class Camera(BaseCamera):
         if not camera.isOpened():
             raise RuntimeError('Could not start camera.')
 
-        # face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-
         while True:
-            # read current frame
             _, img = camera.read()
-
-            # uncomment for face detection
-            # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            # Detect the faces
-            # faces = face_cascade.detectMultiScale(gray, 1.4, 4)
-            # Draw the rectangle around each face
-            # for (x, y, w, h) in faces:
-            #     cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
             text = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
             font                    = cv2.FONT_HERSHEY_SIMPLEX
@@ -48,19 +37,4 @@ class Camera(BaseCamera):
             cv2.putText(img, text, (10,size[1]+10), font, fontScale, blackColor, thickLine)
             cv2.putText(img, text, (10,size[1]+10), font, fontScale, whiteColor, thinLine)
 
-            # cv2.putText(img, datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
-            #     bottomLeftCornerOfText,
-            #     font,
-            #     fontScale*1.1,
-            #     blackColor,
-            #     lineType)
-            #
-            # cv2.putText(img, datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
-            #     bottomLeftCornerOfText,
-            #     font,
-            #     fontScale,
-            #     whiteColor,
-            #     lineType)
-
-            # encode as a jpeg image and return it
             yield cv2.imencode('.jpg', img)[1].tobytes()

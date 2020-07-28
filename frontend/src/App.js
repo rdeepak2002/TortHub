@@ -48,7 +48,7 @@ export default class App extends Component {
               <About/>
             </Route>
             <Route path='*'>
-              <Redirect to='/stream'/>
+              <Stream/>
             </Route>
           </Switch>
         </Router>

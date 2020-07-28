@@ -7,7 +7,7 @@ export default class About extends Component {
       <Container>
         <Row>
           <Col>
-            <h2>Author</h2>
+            <h2 className='about-header'>Author</h2>
             <div>Deepak Ramalingam</div>
           </Col>
         </Row>
