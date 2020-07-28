@@ -6,10 +6,6 @@ from threading import Thread
 from tasks import update_temp_humid_data
 import os
 try:
-    import Adafruit_DHT
-except:
-    print("Error: Unable to import Adafruit_DHT!")
-try:
     from rpi_rf import RFDevice
 except:
     print("Error: Unable to import RFDevice from rpi_rf!")

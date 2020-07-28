@@ -3,7 +3,7 @@ import time
 import datetime
 import pymongo
 try:
-    import Adafruit_DHT
+    import adafruit_dht
 except:
     print("Error: Unable to import Adafruit_DHT!")
 
@@ -13,11 +13,16 @@ database = client["torthubdb"]
 tempCol = database["temperature"]
 humidCol = database["humidity"]
 
+# connect to sensor
+dhtDevice = adafruit_dht.DHT22(board.D4)
+
 # thread to get temp and humidity in background
 def update_temp_humid_data():
     while True:
         # try:
-        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+        temperature = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+        # humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
         updateTempHumidInDb(temperature, humidity)
         # except:
         #     print("error reading from sensor")
