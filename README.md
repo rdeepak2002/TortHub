@@ -7,6 +7,7 @@ Tortoise monitoring system with temperature / humidity sensor and night vision c
 
 ## Requirements for Raspberry Pi 4
 * Raspbian Lite (Buster)
+* Mongo (Enabled on Boot)
 * NGINX
 * Python 3
 * OpenCV (Version 3) for Python 3
@@ -20,7 +21,7 @@ Note: Please reboot the pi after these installations.
 ```sh
 pip3 install Flask
 pip3 install opencv-python==3.4.3.18
-
+pip3 install adafruit-circuitpython-dht
 pip3 install rpi-rf
 pip3 install pymongo
 ```

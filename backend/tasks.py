@@ -6,7 +6,7 @@ import board
 try:
     import adafruit_dht
 except:
-    print("Error: Unable to import Adafruit_DHT!")
+    print("Error: Unable to import adafruit_dht!")
 
 # connection to mongo db
 client = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -14,21 +14,20 @@ database = client["torthubdb"]
 tempCol = database["temperature"]
 humidCol = database["humidity"]
 
-# connect to sensor
+# connect to temp and humid sensor
 dhtDevice = adafruit_dht.DHT22(board.D4)
 
 # thread to get temp and humidity in background
 def update_temp_humid_data():
     while True:
-        # try:
-        temperature = dhtDevice.temperature
-        humidity = dhtDevice.humidity
-        # humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
-        print(temperature)
-        print(humidity)
-        updateTempHumidInDb(temperature, humidity)
-        # except:
-        #     print("error reading from sensor")
+        try:
+            temperature = dhtDevice.temperature
+            humidity = dhtDevice.humidity
+            print(temperature)
+            print(humidity)
+            updateTempHumidInDb(temperature, humidity)
+        except:
+             print("error reading from sensor")
 
         time.sleep(10)
 
