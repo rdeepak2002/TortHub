@@ -16,11 +16,11 @@ humidCol = database["humidity"]
 # thread to get temp and humidity in background
 def update_temp_humid_data():
     while True:
-        try:
-            humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
-            updateTempHumidInDb(temperature, humidity)
-        except:
-            print("error reading from sensor")
+        # try:
+        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+        updateTempHumidInDb(temperature, humidity)
+        # except:
+        #     print("error reading from sensor")
 
         time.sleep(10)
 
