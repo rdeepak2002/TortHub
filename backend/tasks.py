@@ -3,7 +3,7 @@ import time
 import datetime
 import pymongo
 try:
-    import Adafruit_DHT
+    import Adafruit_Python_DHT
 except:
     print("Error: Unable to import Adafruit_DHT!")
 
