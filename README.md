@@ -7,13 +7,11 @@ Tortoise monitoring system with temperature / humidity sensor and night vision c
 
 ## Requirements for Raspberry Pi 4
 * Raspbian Lite (Buster)
-* Mongo (Enabled on Boot)
-* NGINX
-* Python 3
-* OpenCV (Version 3) for Python 3
-* Gunicorn for Python3:
-  * sudo apt-get install gunicorn3
-  * pip3 install gunicorn
+* Mongo (https://pimylifeup.com/mongodb-raspberry-pi/)
+* NGINX (https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md)
+* Python 3 and Pip3 (https://www.raspberrypi.org/documentation/linux/software/python.md)
+* OpenCV (3.4.3.18) for Python 3
+* Gunicorn3 (sudo apt-get install gunicorn3)
 
 Note: Please reboot the pi after these installations.
 
@@ -26,7 +24,7 @@ pip3 install rpi-rf
 pip3 install pymongo
 ```
 
-## Extra Installations Necessary
+## Installations Necessary for OpenCV
 ```sh
 sudo apt-get update
 sudo apt-get upgrade
