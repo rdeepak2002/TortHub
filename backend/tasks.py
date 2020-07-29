@@ -32,7 +32,7 @@ def update_temp_humid_data():
         except:
             print("error reading from sensor")
 
-        time.sleep(15)
+        time.sleep(60)
 
 # method to update data in mongo
 def updateTempHumidInDb(temperature, humidity):
