@@ -5,77 +5,25 @@ Deepak Ramalingam
 ## Description
 Tortoise monitoring system with temperature / humidity sensor and night vision camera.
 
-## Requirements for Raspberry Pi 4
-* Raspbian Lite (Buster)
-* Mongo (https://pimylifeup.com/mongodb-raspberry-pi/)
-* NGINX (https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md)
-* Python 3 and Pip3 (https://www.raspberrypi.org/documentation/linux/software/python.md)
-* OpenCV (3.4.3.18) for Python 3
-* Gunicorn3 (sudo apt-get install gunicorn3)
-
-Note: Please reboot the pi after these installations.
-
-## Install Pip Packages (OpenCV < 4.0 Works Best with the Raspberry Pi 4)
+## Installation
 ```sh
-pip3 install Flask
-pip3 install opencv-python==3.4.3.18
-pip3 install adafruit-circuitpython-dht
-pip3 install rpi-rf
-pip3 install pymongo
+./install-all.sh
 ```
-
-## Installations Necessary for OpenCV
-```sh
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install libgpiod2
-sudo apt-get install libqtgui4 -y
-sudo apt-get install python3-pyqt5 -y
-sudo apt-get install libqt4-test -y
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev -y
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev -y
-sudo apt-get install libatlas-base-dev -y
-sudo apt-get install libjpeg-dev libtiff5-dev libpng12-dev -y
-sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev -y
-sudo apt-get install libgtk2.0-dev libgtk-3-dev -y
-sudo apt-get install libavformat-dev libswscale-dev openexr libopenexr-dev -y
-sudo apt-get install libqt4-dev -y
-sudo apt-get install libgstreamer0.10-0-dbg libgstreamer0.10-0 libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev -y
-sudo apt-get install libgstreamer1.0-0 -y
-sudo apt-get install python-opencv -y
-```
-
-Note: Please reboot the pi after these installations.
-Note: If you are using picamera, make sure that is enabled in raspi-config.
+If you are using PiCamera instead of a USB Camera, make sure that is enabled in raspi-config.
 
 ## Connecting the Smart Plugs
-Please refer to the following resources:
+Refer to the following resources and edit the source code in backend/app.py:
 * https://youtu.be/Xe5Bj_N4Crw
 * https://github.com/milaq/rpi-rf
 
 ## Auto Start
 Create a new service file
+
 ```sh
 sudo nano /etc/systemd/system/torthubserver.service
 ```
 
-Add the following content
-```sh
-[Unit]
-Description=TortHub Server Gunicorn Daemon
-After=network.target
-
-[Service]
-ExecStart=sh launch.sh
-WorkingDirectory=/home/pi/TortHub
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-User=pi
-
-[Install]
-WantedBy=multi-user.target
-```
+Copy and paste the contents of the torthubserver.service file
 
 ## NGINX HTTP Only Config
 Edit the default config file
@@ -142,4 +90,10 @@ server {
     proxy_cache_bypass $http_upgrade;
   }
 }
+```
+
+Restart nginx
+
+```sh
+sudo systemctl restart nginx
 ```
