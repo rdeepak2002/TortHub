@@ -20,16 +20,16 @@ dhtDevice = adafruit_dht.DHT22(board.D4)
 # thread to get temp and humidity in background
 def update_temp_humid_data():
     while True:
-        try:
-            temperature = dhtDevice.temperature
-            humidity = dhtDevice.humidity
-            print(temperature)
-            print(humidity)
-            updateTempHumidInDb(temperature, humidity)
-        except:
-             print("error reading from sensor")
+        # try:
+        temperature = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+        print(temperature)
+        print(humidity)
+        updateTempHumidInDb(temperature, humidity)
+        # except:
+        #      print("error reading from sensor")
 
-        time.sleep(10)
+        time.sleep(15)
 
 # method to update data in mongo
 def updateTempHumidInDb(temperature, humidity):
