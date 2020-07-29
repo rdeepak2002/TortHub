@@ -3,10 +3,10 @@
 Deepak Ramalingam (http://rdeepak2002.me/home)
 
 ## Description
-Tortoise monitoring system with temperature / humidity sensor and night vision camera. Tested on Raspbian Buster.
+Tortoise monitoring system with temperature / humidity sensor and night vision camera. Tested on Raspbian Buster Lite.
 
 ## Installation
-SSH as user 'pi' and while inside the "TortHub" folder run the following command to install the necessary requirements (takes about 3 hours on a Raspberry Pi 4 with 2gb of RAM and standard WiFi)
+SSH as user 'pi' and while inside the "TortHub" folder run the following command to install the necessary requirements (takes about 4 hours on a Raspberry Pi 4 with 2gb of RAM and standard WiFi)
 
 ```sh
 ./install-all.sh
