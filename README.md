@@ -12,7 +12,7 @@ Tortoise monitoring system with temperature / humidity sensor and night vision c
 If you are using PiCamera instead of a USB Camera, make sure that is enabled in raspi-config.
 
 ## Connecting the Smart Plugs
-Refer to the following resources and edit the source code in backend/app.py
+Refer to the following resources and edit the source code in /backend/app.py
 * https://youtu.be/Xe5Bj_N4Crw
 * https://github.com/milaq/rpi-rf
 
