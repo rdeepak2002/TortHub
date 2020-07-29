@@ -6,16 +6,43 @@ sudo apt-get install libgpiod2 -y
 sudo apt-get install libqtgui4 -y
 sudo apt-get install python3-pyqt5 -y
 sudo apt-get install libqt4-test -y
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev -y
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev -y
+sudo apt-get install cmake -y
+sudo apt-get install git -y
+sudo apt-get install libgtk2.0-dev -y
+sudo apt-get install pkg-config -y
+sudo apt-get install libavcodec-dev -y
+sudo apt-get install python-dev -y
+sudo apt-get install python-numpy -y
+sudo apt-get install libtbb2 -y
+sudo apt-get install libtbb-dev -y
+sudo apt-get install libjpeg-dev -y
+sudo apt-get install libpng-dev -y
+sudo apt-get install libtiff-dev -y
+sudo apt-get install libjasper-dev -y
+sudo apt-get install libdc1394-22-dev -y
 sudo apt-get install libatlas-base-dev -y
-sudo apt-get install libjpeg-dev libtiff5-dev libpng12-dev -y
-sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev -y
-sudo apt-get install libgtk2.0-dev libgtk-3-dev -y
-sudo apt-get install libavformat-dev libswscale-dev openexr libopenexr-dev -y
+sudo apt-get install libjpeg-dev -y
+sudo apt-get install libtiff5-dev -y
+sudo apt-get install libpng12-dev -y
+sudo apt-get install libavcodec-dev -y
+sudo apt-get install libavformat-dev -y
+sudo apt-get install libswscale-dev -y
+sudo apt-get install libv4l-dev -y
+sudo apt-get install libgtk2.0-dev -y
+sudo apt-get install libgtk-3-dev -y
+sudo apt-get install libavformat-dev -y
+sudo apt-get install libswscale-dev -y
+sudo apt-get install openexr -y
+sudo apt-get install libopenexr-dev -y
 sudo apt-get install libqt4-dev -y
-sudo apt-get install libgstreamer0.10-0-dbg libgstreamer0.10-0 libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev -y
+sudo apt-get install libgstreamer0.10-0-dbg -y
+sudo apt-get install libgstreamer0.10-0 -y
+sudo apt-get install libgstreamer0.10-dev -y
+sudo apt-get install libgstreamer-plugins-base0.10-dev -y
 sudo apt-get install libgstreamer1.0-0 -y
+sudo apt-get install libatlas-base-dev -y
+sudo apt-get install libhdf5-dev -y
+sudo apt-get install libhdf5-serial-dev -y
 sudo apt-get install python-opencv -y
 sudo apt-get install python3-pip -y
 sudo apt-get install mongodb -y
