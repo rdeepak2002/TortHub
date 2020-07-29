@@ -49,13 +49,13 @@ sudo apt-get install mongodb -y
 sudo apt-get install nginx -y
 sudo apt-get install gunicorn3 -y
 sudo apt-get install git -y
-# update and upgrade os and packages
-sudo apt-get update -y
-sudo apt-get full-upgrade -y
 # enable nginx and mongo
 sudo /etc/init.d/nginx start
 sudo systemctl enable mongodb
 sudo systemctl start mongodb
+# update and upgrade os and packages
+sudo apt-get update -y
+sudo apt-get full-upgrade -y
 # pip3 packages
 pip3 install Flask
 pip3 install opencv-python==3.4.3.18
