@@ -6,9 +6,12 @@ Deepak Ramalingam
 Tortoise monitoring system with temperature / humidity sensor and night vision camera.
 
 ## Installation (Raspbian Buster)
+SSH as user 'pi' and while inside the "TortHub" folder run the following command to install the necessary requirements
+
 ```sh
 ./install-all.sh
 ```
+
 If you are using PiCamera instead of a USB Camera, make sure that is enabled in raspi-config.
 
 ## Connecting the Smart Plugs
