@@ -12,7 +12,7 @@ SSH as user 'pi' and while inside the "TortHub" folder run the following command
 ./install-all.sh
 ```
 
-If you are using PiCamera instead of a USB Camera, make sure that is enabled in raspi-config.
+If you are using PiCamera instead of a USB Camera, make sure that is enabled in raspi-config
 
 ## Connecting the Smart Plugs
 Refer to the following resources and edit the source code in /backend/app.py
