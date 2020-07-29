@@ -5,7 +5,7 @@ Deepak Ramalingam
 ## Description
 Tortoise monitoring system with temperature / humidity sensor and night vision camera.
 
-## Installation
+## Installation (Raspbian Buster)
 ```sh
 ./install-all.sh
 ```
