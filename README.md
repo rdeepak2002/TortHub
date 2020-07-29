@@ -6,7 +6,7 @@ Deepak Ramalingam (http://rdeepak2002.me/home)
 Tortoise monitoring system with temperature / humidity sensor and night vision camera. Tested on Raspbian Buster Lite.
 
 ## Installation
-SSH as user 'pi' and while inside the "TortHub" folder run the following command to install the necessary requirements (takes about 4-6 hours on a Raspberry Pi 4 with 2gb of RAM and standard WiFi)
+SSH as user 'pi' and while inside the "TortHub" folder run the following command to install the necessary requirements (takes about 4-12 hours on a Raspberry Pi 4 with 2gb of RAM and standard WiFi, it is recommended to use screen to run the installation - https://linuxize.com/post/how-to-use-linux-screen/)
 
 ```sh
 ./install-all.sh
@@ -31,6 +31,36 @@ Then start the service and enable the service on boot
 ```sh
 sudo systemctl start torthubserver.service
 sudo systemctl enable torthubserver.service
+```
+
+## Reboot when WiFi Connection is Lost
+Add a new script
+
+```sh
+sudo nano /usr/local/bin/checkwifi.sh
+```
+
+Add the following contents
+
+```sh
+ping -c4 192.168.1.1 > /dev/null
+
+if [ $? != 0 ]
+then
+  sudo /sbin/shutdown -r now
+fi
+```
+
+Change the permissions of the script
+
+```sh
+sudo chmod 775 /usr/local/bin/checkwifi.sh
+```
+
+Add a crontab to run the script periodically
+
+```sh
+*/5 * * * * /usr/bin/sudo -H /usr/local/bin/checkwifi.sh >> /dev/null 2>&1
 ```
 
 ## NGINX HTTP Only Config
