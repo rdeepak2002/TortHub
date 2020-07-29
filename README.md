@@ -20,13 +20,18 @@ Refer to the following resources and edit the source code in /backend/app.py
 * https://github.com/milaq/rpi-rf
 
 ## Auto Start
-Create a new service file
+Create a new service file and copy and paste the contents of the torthubserver.service file into it
 
 ```sh
 sudo nano /etc/systemd/system/torthubserver.service
 ```
 
-Copy and paste the contents of the torthubserver.service file
+Then start the service and enable the service on boot
+
+```sh
+sudo systemctl start torthubserver.service
+sudo systemctl enable torthubserver.service
+```
 
 ## NGINX HTTP Only Config
 Edit the default config file
