@@ -20,14 +20,17 @@ dhtDevice = adafruit_dht.DHT22(board.D4)
 # thread to get temp and humidity in background
 def update_temp_humid_data():
     while True:
-        # try:
-        temperature = dhtDevice.temperature
-        humidity = dhtDevice.humidity
-        print(temperature)
-        print(humidity)
-        updateTempHumidInDb(temperature, humidity)
-        # except:
-        #      print("error reading from sensor")
+        try:
+            temperature = dhtDevice.temperature
+            humidity = dhtDevice.humidity
+            print(temperature)
+            print(humidity)
+            try:
+                updateTempHumidInDb(temperature, humidity)
+            except:
+                print("error connecting to database")
+        except:
+            print("error reading from sensor")
 
         time.sleep(15)
 

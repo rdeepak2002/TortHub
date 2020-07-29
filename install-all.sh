@@ -61,6 +61,6 @@ pip3 install Flask
 pip3 install opencv-python==3.4.3.18
 pip3 install adafruit-circuitpython-dht
 pip3 install rpi-rf
-pip3 install pymongo
+pip3 install pymongo==3.4.0
 # reboot
 sudo reboot
