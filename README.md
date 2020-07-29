@@ -67,7 +67,7 @@ sudo systemctl restart nginx
 
 ## NGINX HTTPS Config
 
-Use https://www.sslforfree.com/ to generate keys and place the 'certificate.crt' and 'privatet.key' files in the /etc/nginx/ssl/ directory
+Use https://www.sslforfree.com/ to generate keys and place the 'certificate.crt' and 'private.key' files in the /etc/nginx/ssl/ directory
 
 ```sh
 server {
