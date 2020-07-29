@@ -21,7 +21,7 @@ dhtDevice = adafruit_dht.DHT22(board.D4)
 def update_temp_humid_data():
     while True:
         try:
-            temperature = dhtDevice.temperature
+            temperature = (9.0/5.0)*dhtDevice.temperature+32
             humidity = dhtDevice.humidity
             print(temperature)
             print(humidity)
