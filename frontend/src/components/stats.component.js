@@ -61,6 +61,7 @@ export default class Stats extends Component {
   getStats() {
     axios.get('/sensor_stats').then(
       res => {
+        console.log(res)
         if(res.data.temperature && res.data.humidity) {
           this.setState({temperature: res.data.temperature, humidity: res.data.humidity, tempHumidLoaded: true});
         }

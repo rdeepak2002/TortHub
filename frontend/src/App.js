@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 
@@ -25,7 +25,7 @@ export default class App extends Component {
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='mr-auto'>
-                  <NavLink to={'/stream'} className='nav-link' activeClassName='active'>Stream</NavLink>
+                  <NavLink to={'/'} className='nav-link' activeClassName='active'>Stream</NavLink>
                   <NavLink to={'/lights'} className='nav-link' activeClassName='active'>Lights</NavLink>
                   <NavLink to={'/stats'} className='nav-link' activeClassName='active'>Stats</NavLink>
                   <NavLink to={'/about'} className='nav-link' activeClassName='active'>About</NavLink>
@@ -35,9 +35,6 @@ export default class App extends Component {
           </Navbar>
 
           <Switch>
-            <Route exact path='/stream'>
-              <Stream/>
-            </Route>
             <Route exact path='/lights'>
               <DeviceControl/>
             </Route>

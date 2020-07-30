@@ -1,14 +1,17 @@
 # imports
+import os
+import json
+from bson import json_util
 from importlib import import_module
 from flask import Flask, Response, jsonify, send_from_directory, send_file
 from camera_opencv import Camera
 from threading import Thread
 from tasks import update_temp_humid_data
-import os
+from mongodao import getTempFromDb
 try:
     from rpi_rf import RFDevice
 except:
-    print("Error: Unable to import RFDevice from rpi_rf!")
+    print("Error: Unable to import RFDevice from rpi_rf")
 
 # flask app
 app = Flask(__name__, static_folder='build')
@@ -41,7 +44,12 @@ def video_feed():
 # get request for getting sensor data
 @app.route('/sensor_stats', methods=['GET'])
 def sensor_stats():
-    return Response("Return mongo data here")
+    documents = getTempFromDb()
+    response = []
+    for document in documents:
+        document['_id'] = str(document['_id'])
+        response.append(document)
+    return json.dumps(response, default=json_util.default)
 
 # get request to turn off light
 @app.route('/turnoff_light', methods=['GET'])
