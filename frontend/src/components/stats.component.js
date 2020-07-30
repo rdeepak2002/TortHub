@@ -7,9 +7,8 @@ export default class Stats extends Component {
     super(props);
 
     this.state = {
-      temperature: undefined,
-      humidity: undefined,
-      tempHumidLoaded: false
+      tempHumidLoaded: false,
+      errorLoading: false
     };
 
     this.getStats = this.getStats.bind(this);
@@ -20,26 +19,19 @@ export default class Stats extends Component {
   }
 
   render() {
-    const statsready = this.state.tempHumidLoaded;
-
     return (
       <Container>
-        <Row className={!statsready ? 'visible' : 'hidden'}>
+        <Row className={!this.state.tempHumidLoaded ? 'visible' : 'hidden'}>
           <Col className='d-flex justify-content-center'>
             <Spinner animation='border' size="lg"/>
           </Col>
         </Row>
-        <Row className={statsready ? 'visible' : 'hidden'}>
+        <Row className={this.state.tempHumidLoaded ? 'visible' : 'hidden'}>
           <Col>
-            {(this.state.temperature && this.state.humidity) ?
+            {(!this.state.errorLoading && this.state.tempHumidLoaded) ?
               (<Row>
                 <Col>
-                  <Row>
-                    <p className='stats-info'>Temperature: {Math.round(this.state.temperature)}°F</p>
-                  </Row>
-                  <Row>
-                    <p className='stats-info'>Humidity: {Math.round(this.state.humidity)}%</p>
-                  </Row>
+                  TODO: graph here
                 </Col>
               </Row>):
               (
@@ -62,15 +54,15 @@ export default class Stats extends Component {
     axios.get('/sensor_stats').then(
       res => {
         console.log(res)
-        if(res.data.temperature && res.data.humidity) {
-          this.setState({temperature: res.data.temperature, humidity: res.data.humidity, tempHumidLoaded: true});
+        if(res.data && res.data.length >= 0) {
+          this.setState({tempHumidLoaded: true});
         }
         else {
-          this.setState({tempHumidLoaded: true});
+          this.setState({tempHumidLoaded: true, errorLoading: true});
         }
       },
       error => {
-        this.setState({tempHumidLoaded: true});
+        this.setState({tempHumidLoaded: true, errorLoading: true});
         console.log(error);
       });
   }
