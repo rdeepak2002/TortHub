@@ -31,8 +31,9 @@ def update_temp_humid_data():
                 print("error connecting to database")
         except:
             print("error reading from sensor")
-
-        time.sleep(60)
+        minutes = 15
+        seconds = 60*minutes
+        time.sleep(seconds)
 
 # method to update data in mongo
 def updateTempHumidInDb(temperature, humidity):
