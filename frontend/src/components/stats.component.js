@@ -42,7 +42,7 @@ export default class Stats extends Component {
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
-                      tickFormatter = {(unixTime) => moment(unixTime).format('hh:mm:ss')}
+                      tickFormatter = {(unixTime) => moment(new Date(unixTime)).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
                       <YAxis dataKey = 'temperature' name = 'Value' />
@@ -55,7 +55,6 @@ export default class Stats extends Component {
                       />
                     </ScatterChart>
                   </ResponsiveContainer>
-
 
                   <h2 className='graph-title'>Humidity vs. Time</h2>
                   <ResponsiveContainer width = '100%' height = {500} >
@@ -77,9 +76,6 @@ export default class Stats extends Component {
                       />
                     </ScatterChart>
                   </ResponsiveContainer>
-
-
-
                 </Col>
               </Row>):
               (
@@ -103,7 +99,6 @@ export default class Stats extends Component {
       res => {
         if(res.data && res.data.length >= 0) {
           let data = res.data;
-          console.log(data);
           data.map(function(item) {
             delete item._id;
             item.time = item.time.$date;
@@ -129,7 +124,6 @@ export default class Stats extends Component {
       res => {
         if(res.data && res.data.length >= 0) {
           let data = res.data;
-          console.log(data);
           data.map(function(item) {
             delete item._id;
             item.time = item.time.$date;
