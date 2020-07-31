@@ -20,7 +20,7 @@ def getHumidFromDb():
 
 # method to update data in mongo
 def updateTempHumidInDb(temperature, humidity):
-    current_time = int(time.time())
+    current_time = int(time.time()*1000)
 
     tempData = { "time": current_time, "temperature": temperature }
     humidData = { "time": current_time, "humidity": humidity }
