@@ -10,12 +10,12 @@ humidCol = database["humidity"]
 
 # method to get temperature data in mongo
 def getTempFromDb():
-    result = tempCol.find().sort("time").limit(50)
+    result = tempCol.find().sort({_id:1}).limit(672)
     return result
 
 # method to get humidity data in mongo
 def getHumidFromDb():
-    result = humidCol.find().sort("time").limit(50)
+    result = humidCol.find().sort({_id:1}).limit(672)
     return result
 
 # method to update data in mongo
