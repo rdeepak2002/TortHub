@@ -20,7 +20,7 @@ export default class App extends Component {
         </Helmet>
 
         <Router>
-          <Navbar sticky='top' bg='light' expand='lg'>
+          <Navbar sticky='top' bg='dark' variant='dark' expand='lg'>
             <Container>
               <Navbar.Brand href='/stream'>TortHub</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
