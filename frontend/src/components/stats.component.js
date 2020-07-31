@@ -38,7 +38,7 @@ export default class Stats extends Component {
                   <h2 className='graph-title'>Temperature vs. Time</h2>
                   <ResponsiveContainer width = '100%' height = {500} >
                     <ScatterChart>
-                      <CartesianGrid />
+                      <CartesianGrid strokeDasharray='3 3'/>
 
                       <XAxis
                       dataKey = 'time'
@@ -58,7 +58,7 @@ export default class Stats extends Component {
 
                       <Scatter
                       data = {this.state.tempData}
-                      line = {{ stroke: '#eee' }}
+                      line = {{ stroke: '#FF7070' }}
                       lineJointType = 'monotoneX'
                       lineType = 'joint'
                       name = 'Temperatures'
@@ -70,7 +70,7 @@ export default class Stats extends Component {
                   <h2 className='graph-title'>Humidity vs. Time</h2>
                   <ResponsiveContainer width = '100%' height = {500} >
                     <ScatterChart>
-                      <CartesianGrid />
+                      <CartesianGrid strokeDasharray='3 3'/>
 
                       <XAxis
                       dataKey = 'time'
@@ -90,7 +90,7 @@ export default class Stats extends Component {
 
                       <Scatter
                       data = {this.state.humidData}
-                      line = {{ stroke: '#eee' }}
+                      line = {{ stroke: '#7D9DFF' }}
                       lineJointType = 'monotoneX'
                       lineType = 'joint'
                       name = 'Humidity'

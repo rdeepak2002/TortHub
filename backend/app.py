@@ -13,7 +13,7 @@ from subprocess import call
 try:
     from rpi_rf import RFDevice
 except:
-    print("Error: Unable to import RFDevice from rpi_rf")
+    print('Error: Unable to import RFDevice from rpi_rf')
 
 # flask app
 app = Flask(__name__, static_folder='build')
@@ -33,7 +33,7 @@ def gen(camera):
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
+    if path != '' and os.path.exists(app.static_folder + '/' + path):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, 'index.html')
@@ -72,9 +72,9 @@ def turnoff_light():
         rfdevice.tx_repeat = 10
         rfdevice.tx_code(4478268, 1, 186, 24)
         rfdevice.cleanup()
-        return Response("Light turned off!")
+        return Response('Light turned off!')
     except:
-        return Response("Error with turning off light.")
+        return Response('Error with turning off light.')
 
 # get request to turn on light
 @app.route('/turnon_light', methods=['GET'])
@@ -85,18 +85,19 @@ def turnon_light():
         rfdevice.tx_repeat = 10
         rfdevice.tx_code(4478259, 1, 186, 24)
         rfdevice.cleanup()
-        return Response("Light turned on!")
+        return Response('Light turned on!')
     except:
-        return Response("Error with turning on light.")
+        return Response('Error with turning on light.')
 
 # get request to update the server
 @app.route('/update_server', methods=['GET'])
 def update_server():
     try:
-        x = call(["ls", "-l"])
-        return Response("Result: " + call(["ls", "-l"]))
+        call(['git', 'pull'])
+        call(['sudo', 'systemctl', 'restart', 'torthubserver.service'])
+        return Response('Updated successfully.')
     except:
-        return Response("Error updating the server.")
+        return Response('Error updating the server.')
 
 # return file for SSL validation
 @app.route('/.well-known/pki-validation/<challenge>')
