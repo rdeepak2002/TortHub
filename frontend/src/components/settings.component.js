@@ -15,9 +15,15 @@ export default class Settings extends Component {
       <Container>
         <Row>
           <Col>
-            <h2 className='about-header'>Settings</h2>
-            <Button onClick={this.updateServer}>Update</Button>
-            <Button onClick={this.rebootServer}>Reboot</Button>
+            <Row>
+              <h2 className='about-header'>Settings</h2>
+            </Row>
+            <Row>
+              <Button onClick={this.updateServer}>Update</Button>
+            </Row>
+            <Row>
+              <Button onClick={this.rebootServer}>Reboot</Button>
+            </Row>
           </Col>
         </Row>
       </Container>
