@@ -45,6 +45,7 @@ export default class Stats extends Component {
                       name = 'Time'
                       tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
+                      unit = '℉'
                       />
                       <YAxis dataKey = 'temperature' name = 'Temperature' />
                       <Tooltip cursor={{ strokeDasharray: '3 3' }} />
@@ -69,6 +70,7 @@ export default class Stats extends Component {
                       name = 'Time'
                       tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
+                      unit = '%'
                       />
                       <YAxis dataKey = 'humidity' name = 'Humidity' />
                       <Tooltip cursor={{ strokeDasharray: '3 3' }} />
