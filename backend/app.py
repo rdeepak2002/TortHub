@@ -99,6 +99,15 @@ def update_server():
     except:
         return Response('Error updating the server.')
 
+# get request to reboot the server
+@app.route('/reboot_server', methods=['GET'])
+def reboot_server():
+    try:
+        call(['sudo', 'reboot'])
+        return Response('Rebooted successfully.')
+    except:
+        return Response('Error rebooting the server.')
+
 # return file for SSL validation
 @app.route('/.well-known/pki-validation/<challenge>')
 def verify_ssl(challenge):

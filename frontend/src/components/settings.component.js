@@ -7,6 +7,7 @@ export default class Settings extends Component {
     super(props);
 
     this.updateServer = this.updateServer.bind(this);
+    this.rebootServer = this.rebootServer.bind(this);
   }
 
   render() {
@@ -16,6 +17,7 @@ export default class Settings extends Component {
           <Col>
             <h2 className='about-header'>Settings</h2>
             <Button onClick={this.updateServer}>Update</Button>
+            <Button onClick={this.rebootServer}>Reboot</Button>
           </Col>
         </Row>
       </Container>
@@ -24,6 +26,16 @@ export default class Settings extends Component {
 
   updateServer() {
     axios.get('/update_server').then(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  rebootServer() {
+    axios.get('/reboot_server').then(
       res => {
         console.log(res);
       },
