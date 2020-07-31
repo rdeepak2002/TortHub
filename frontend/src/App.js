@@ -27,8 +27,8 @@ export default class App extends Component {
               <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='mr-auto'>
                   <NavLink to={'/stream'} className='nav-link' activeClassName='active'>Stream</NavLink>
+                  <NavLink to={'/stats'} className='nav-link' activeClassName='active'>Temperature and Humidity</NavLink>
                   <NavLink to={'/lights'} className='nav-link' activeClassName='active'>Lights</NavLink>
-                  <NavLink to={'/stats'} className='nav-link' activeClassName='active'>Stats</NavLink>
                   <NavLink to={'/settings'} className='nav-link' activeClassName='active'>Settings</NavLink>
                   <NavLink to={'/about'} className='nav-link' activeClassName='active'>About</NavLink>
                 </Nav>
