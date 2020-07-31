@@ -93,6 +93,18 @@ server {
     proxy_set_header Host $host;
     proxy_cache_bypass $http_upgrade;
   }
+
+  error_page 404 /custom_404.html;
+  location = /custom_404.html {
+    root /home/pi/TortHub/nginx_error_pages;
+    internal;
+  }
+
+  error_page 500 502 503 504 /custom_50x.html;
+  location = /custom_50x.html {
+    root /home/pi/TortHub/nginx_error_pages;
+    internal;
+  }
 }
 ```
 
@@ -128,6 +140,18 @@ server {
     proxy_set_header Connection 'upgrade';
     proxy_set_header Host $host;
     proxy_cache_bypass $http_upgrade;
+  }
+
+  error_page 404 /custom_404.html;
+  location = /custom_404.html {
+    root /home/pi/TortHub/nginx_error_pages;
+    internal;
+  }
+
+  error_page 500 502 503 504 /custom_50x.html;
+  location = /custom_50x.html {
+    root /home/pi/TortHub/nginx_error_pages;
+    internal;
   }
 }
 ```
