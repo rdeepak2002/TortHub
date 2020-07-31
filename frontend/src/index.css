@@ -5,6 +5,17 @@
   background-color: white;
 }
 
+/* for recharts */
+#container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+}
+
 /* video feed */
 .video_feed {
   margin: 0 auto;
@@ -55,4 +66,11 @@
 /* information on temperature and humidity */
 .stats-info {
   margin-top: 1rem;
+}
+
+/* title for a graph */
+.graph-title {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
