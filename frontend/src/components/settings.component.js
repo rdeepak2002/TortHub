@@ -19,10 +19,10 @@ export default class Settings extends Component {
               <h2 className='about-header'>Settings</h2>
             </Row>
             <Row>
-              <Button onClick={this.updateServer}>Update</Button>
+              <Button className='settings-btn' onClick={this.updateServer}>Update</Button>
             </Row>
             <Row>
-              <Button onClick={this.rebootServer}>Reboot</Button>
+              <Button className='settings-btn' onClick={this.rebootServer}>Reboot</Button>
             </Row>
           </Col>
         </Row>
