@@ -63,7 +63,7 @@ export default class Stats extends Component {
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
-                      tickFormatter = {(unixTime) => moment(unixTime).format('hh:mm:ss')}
+                      tickFormatter = {(unixTime) => moment(new Date(unixTime)).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
                       <YAxis dataKey = 'humidity' name = 'Value' />
