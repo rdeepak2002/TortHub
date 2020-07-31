@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
-import { ScatterChart, Scatter, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -38,6 +38,7 @@ export default class Stats extends Component {
                   <h2 className='graph-title'>Temperature vs. Time</h2>
                   <ResponsiveContainer width = '100%' height = {500} >
                     <ScatterChart>
+                      <CartesianGrid />
                       <XAxis
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
@@ -45,13 +46,15 @@ export default class Stats extends Component {
                       tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
-                      <YAxis dataKey = 'temperature' name = 'Value' />
+                      <YAxis dataKey = 'temperature' name = 'Temperature' />
+                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                       <Scatter
                       data = {this.state.tempData}
                       line = {{ stroke: '#eee' }}
                       lineJointType = 'monotoneX'
                       lineType = 'joint'
-                      name = 'Values'
+                      name = 'Temperatures'
+                      fill='#8884d8'
                       />
                     </ScatterChart>
                   </ResponsiveContainer>
@@ -59,6 +62,7 @@ export default class Stats extends Component {
                   <h2 className='graph-title'>Humidity vs. Time</h2>
                   <ResponsiveContainer width = '100%' height = {500} >
                     <ScatterChart>
+                      <CartesianGrid />
                       <XAxis
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
@@ -66,13 +70,15 @@ export default class Stats extends Component {
                       tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
-                      <YAxis dataKey = 'humidity' name = 'Value' />
+                      <YAxis dataKey = 'humidity' name = 'Humidity' />
+                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                       <Scatter
                       data = {this.state.humidData}
                       line = {{ stroke: '#eee' }}
                       lineJointType = 'monotoneX'
                       lineType = 'joint'
-                      name = 'Values'
+                      name = 'Humidity'
+                      fill='#8884d8'
                       />
                     </ScatterChart>
                   </ResponsiveContainer>
