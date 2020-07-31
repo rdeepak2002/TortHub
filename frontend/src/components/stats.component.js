@@ -42,7 +42,7 @@ export default class Stats extends Component {
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
-                      tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
+                      tickFormatter = {(unixTime) => moment(unixTime*1000).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
                       <YAxis dataKey = 'temperature' name = 'Value' />
@@ -63,7 +63,7 @@ export default class Stats extends Component {
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
-                      tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
+                      tickFormatter = {(unixTime) => moment(unixTime*1000).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
                       <YAxis dataKey = 'humidity' name = 'Value' />
