@@ -14,6 +14,8 @@ SSH as user 'pi' and while inside the "TortHub" folder run the following command
 
 If you are using PiCamera instead of a USB Camera, make sure that is enabled in raspi-config
 
+Make sure the timezone is correct by setting it in raspi-config
+
 ## Connecting the Smart Plugs
 Refer to the following resources and edit the source code in /backend/app.py
 * https://youtu.be/Xe5Bj_N4Crw
