@@ -33,7 +33,8 @@ export default class Settings extends Component {
   updateServer() {
     axios.get('/update_server').then(
       res => {
-        console.log(res);
+        alert(res);
+        window.location.reload();
       },
       error => {
         console.log(error);
@@ -44,6 +45,7 @@ export default class Settings extends Component {
     axios.get('/reboot_server').then(
       res => {
         console.log(res);
+        window.location.reload();
       },
       error => {
         console.log(error);
