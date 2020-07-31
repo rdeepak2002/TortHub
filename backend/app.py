@@ -8,6 +8,7 @@ from camera_opencv import Camera
 from threading import Thread
 from tasks import update_temp_humid_data
 from mongodao import getTempFromDb
+from mongodao import getHumidFromDb
 try:
     from rpi_rf import RFDevice
 except:
@@ -41,10 +42,20 @@ def serve(path):
 def video_feed():
     return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-# get request for getting sensor data
-@app.route('/sensor_stats', methods=['GET'])
-def sensor_stats():
+# get request for getting temperature data
+@app.route('/get_temperature', methods=['GET'])
+def get_temperature():
     documents = getTempFromDb()
+    response = []
+    for document in documents:
+        document['_id'] = str(document['_id'])
+        response.append(document)
+    return json.dumps(response, default=json_util.default)
+
+# get request for getting sensor data
+@app.route('/get_humidity', methods=['GET'])
+def get_humidity():
+    documents = getHumidFromDb()
     response = []
     for document in documents:
         document['_id'] = str(document['_id'])
