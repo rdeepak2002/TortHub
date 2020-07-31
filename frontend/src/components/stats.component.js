@@ -83,6 +83,7 @@ export default class Stats extends Component {
                       <YAxis
                       dataKey = 'humidity'
                       name = 'Humidity'
+                      unit = '%'
                       />
 
                       <Tooltip cursor={{ strokeDasharray: '3 3' }} />
