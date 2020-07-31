@@ -33,7 +33,7 @@ export default class Settings extends Component {
   updateServer() {
     axios.get('/update_server').then(
       res => {
-        alert(res);
+        alert("Updating the server (website will be down for a very short period of time).");
         window.location.reload();
       },
       error => {
@@ -44,7 +44,7 @@ export default class Settings extends Component {
   rebootServer() {
     axios.get('/reboot_server').then(
       res => {
-        console.log(res);
+        alert("Rebooting the server (website will be down for a while).")
         window.location.reload();
       },
       error => {
