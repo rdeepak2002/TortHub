@@ -99,12 +99,6 @@ export default class Stats extends Component {
       res => {
         if(res.data && res.data.length >= 0) {
           let data = res.data;
-          data.map(function(item) {
-            delete item._id;
-            item.time = item.time.$date;
-            console.log(item.time)
-            return item;
-          });
           this.setState({tempData: data});
         }
         else {
@@ -123,11 +117,6 @@ export default class Stats extends Component {
       res => {
         if(res.data && res.data.length >= 0) {
           let data = res.data;
-          data.map(function(item) {
-            delete item._id;
-            item.time = item.time.$date;
-            return item;
-          });
           this.setState({humidData: data});
         }
         else {
