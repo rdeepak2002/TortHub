@@ -54,7 +54,7 @@ export default class Stats extends Component {
                       unit = '℉'
                       />
 
-                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                      <Tooltip cursor={{ strokeDasharray: '3 3' }} labelFormatter={time => new Date(time).toLocaleString()} />
 
                       <Scatter
                       data = {this.state.tempData}
@@ -86,7 +86,7 @@ export default class Stats extends Component {
                       unit = '%'
                       />
 
-                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                      <Tooltip cursor={{ strokeDasharray: '3 3' }} labelFormatter={time => new Date(time).toLocaleString()} />
 
                       <Scatter
                       data = {this.state.humidData}
