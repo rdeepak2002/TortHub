@@ -9,6 +9,7 @@ from threading import Thread
 from tasks import update_temp_humid_data
 from mongodao import getTempFromDb
 from mongodao import getHumidFromDb
+from subprocess import call
 try:
     from rpi_rf import RFDevice
 except:
@@ -87,6 +88,15 @@ def turnon_light():
         return Response("Light turned on!")
     except:
         return Response("Error with turning on light.")
+
+# get request to update the server
+@app.route('/update_server', methods=['GET'])
+def update_server():
+    try:
+        x = call(["ls", "-l"])
+        return Response("Result: " + call(["ls", "-l"]))
+    except:
+        return Response("Error updating the server.")
 
 # return file for SSL validation
 @app.route('/.well-known/pki-validation/<challenge>')

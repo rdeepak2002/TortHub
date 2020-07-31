@@ -32,7 +32,7 @@ export default class Stats extends Component {
         </Row>
         <Row className={(this.state.tempData && this.state.humidData) ? 'visible' : 'hidden'}>
           <Col>
-            {(!this.state.errorLoading && (this.state.tempData && this.state.humidData)) ?
+            {(!this.state.errorLoading) ?
               (<Row>
                 <Col>
                   <h2 className='graph-title'>Temperature vs. Time</h2>
@@ -42,7 +42,7 @@ export default class Stats extends Component {
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
-                      tickFormatter = {(unixTime) => moment(new Date(unixTime)).format('MM/DD/YYYY h:mm:ss a')}
+                      tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
                       <YAxis dataKey = 'temperature' name = 'Value' />
@@ -63,7 +63,7 @@ export default class Stats extends Component {
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
-                      tickFormatter = {(unixTime) => moment(new Date(unixTime)).format('MM/DD/YYYY h:mm:ss a')}
+                      tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
                       />
                       <YAxis dataKey = 'humidity' name = 'Value' />
@@ -106,7 +106,6 @@ export default class Stats extends Component {
             return item;
           });
           this.setState({tempData: data});
-          console.log(this.state.tempData);
         }
         else {
           this.setState({errorLoading: true});
@@ -130,7 +129,6 @@ export default class Stats extends Component {
             return item;
           });
           this.setState({humidData: data});
-          console.log(this.state.humidData);
         }
         else {
           this.setState({errorLoading: true});
