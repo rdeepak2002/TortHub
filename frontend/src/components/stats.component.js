@@ -39,16 +39,23 @@ export default class Stats extends Component {
                   <ResponsiveContainer width = '100%' height = {500} >
                     <ScatterChart>
                       <CartesianGrid />
+
                       <XAxis
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
                       tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
+                      />
+
+                      <YAxis
+                      dataKey = 'temperature'
+                      name = 'Temperature'
                       unit = '℉'
                       />
-                      <YAxis dataKey = 'temperature' name = 'Temperature' />
+
                       <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+
                       <Scatter
                       data = {this.state.tempData}
                       line = {{ stroke: '#eee' }}
@@ -64,16 +71,22 @@ export default class Stats extends Component {
                   <ResponsiveContainer width = '100%' height = {500} >
                     <ScatterChart>
                       <CartesianGrid />
+
                       <XAxis
                       dataKey = 'time'
                       domain = {['auto', 'auto']}
                       name = 'Time'
                       tickFormatter = {(unixTime) => moment(unixTime).format('MM/DD/YYYY h:mm:ss a')}
                       type = 'number'
-                      unit = '%'
                       />
-                      <YAxis dataKey = 'humidity' name = 'Humidity' />
+
+                      <YAxis
+                      dataKey = 'humidity'
+                      name = 'Humidity'
+                      />
+
                       <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+
                       <Scatter
                       data = {this.state.humidData}
                       line = {{ stroke: '#eee' }}
@@ -81,6 +94,7 @@ export default class Stats extends Component {
                       lineType = 'joint'
                       name = 'Humidity'
                       fill='#8884d8'
+                      unit = '%'
                       />
                     </ScatterChart>
                   </ResponsiveContainer>
