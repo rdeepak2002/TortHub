@@ -58,11 +58,11 @@ export default class Stats extends Component {
 
                       <Scatter
                       data = {this.state.tempData}
-                      line = {{ stroke: '#FF4040' }}
+                      line = {{ stroke: '#FF7070' }}
                       lineJointType = 'monotoneX'
                       lineType = 'joint'
                       name = 'Temperatures'
-                      fill='#8884d8'
+                      fill='#FF4040'
                       />
                     </ScatterChart>
                   </ResponsiveContainer>
