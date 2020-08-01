@@ -1,4 +1,4 @@
-# imports 
+# imports
 import os
 import json
 from bson import json_util
@@ -9,7 +9,7 @@ from threading import Thread
 from tasks import update_temp_humid_data
 from mongodao import getTempFromDb
 from mongodao import getHumidFromDb
-from subprocess import call
+from subprocess
 try:
     from rpi_rf import RFDevice
 except:
@@ -93,8 +93,8 @@ def turnon_light():
 @app.route('/update_server', methods=['GET'])
 def update_server():
     try:
-        call(['git', 'pull'])
-        call(['sudo', 'systemctl', 'restart', 'torthubserver.service'])
+        subprocess.call(['git', 'pull'])
+        subprocess.call(['sudo', 'systemctl', 'restart', 'torthubserver.service'])
         return Response('Updated successfully.')
     except:
         return Response('Error updating the server.')
@@ -103,7 +103,7 @@ def update_server():
 @app.route('/reboot_server', methods=['GET'])
 def reboot_server():
     try:
-        call(['sudo', 'reboot'])
+        subprocess.call(['sudo', 'reboot'])
         return Response('Rebooted successfully.')
     except:
         return Response('Error rebooting the server.')
