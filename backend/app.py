@@ -19,6 +19,9 @@ except:
 # flask app
 app = Flask(__name__, static_folder='build')
 
+# stop caching of files
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 # background thread for updating temperature data
 thread = Thread(target=update_temp_humid_data)
 thread.daemon = True
