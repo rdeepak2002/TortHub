@@ -2,6 +2,7 @@
 import os
 import json
 import subprocess
+import shutil
 from bson import json_util
 from importlib import import_module
 from flask import Flask, Response, jsonify, send_from_directory, send_file
@@ -109,13 +110,12 @@ def reboot_server():
         return Response('Error rebooting the server.')
 
 # get request to see system stats
-# @app.route('/system_status', methods=['GET'])
-# def system_status():
-#     statvfs = os.statvfs('/home/foo/bar/baz')
-#
-#     statvfs.f_frsize * statvfs.f_blocks     # Size of filesystem in bytes
-#     statvfs.f_frsize * statvfs.f_bfree      # Actual number of free bytes
-#     statvfs.f_frsize * statvfs.f_bavail     # Number of free bytes that ordinary users are allowed to use (excl. reserved space)
+@app.route('/system_status', methods=['GET'])
+def system_status():
+    total, used, free = shutil.disk_usage(__file__)
+    print(total, used, free)
+
+    return Response('Okay.')
 
 # return file for SSL validation
 @app.route('/.well-known/pki-validation/<challenge>')

@@ -6,6 +6,12 @@ export default class Settings extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      totalStorage: undefined,
+      storageUsed: undefined,
+      storageFree: undefined
+    };
+
     this.updateServer = this.updateServer.bind(this);
     this.rebootServer = this.rebootServer.bind(this);
   }
@@ -23,6 +29,11 @@ export default class Settings extends Component {
             </Row>
             <Row>
               <Button className='settings-btn' onClick={this.rebootServer}>Reboot Server</Button>
+            </Row>
+            <Row>
+              <p>Total Storage: {this.state.totalStorage}</p>
+              <p>Storage Used: {this.state.storageUsed}</p>
+              <p>Storage Left: {this.state.storageFree}</p>
             </Row>
           </Col>
         </Row>
