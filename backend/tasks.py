@@ -23,8 +23,6 @@ def update_temp_humid_data():
         try:
             temperature = (9.0/5.0)*dhtDevice.temperature+32
             humidity = dhtDevice.humidity
-            print(temperature)
-            print(humidity)
             try:
                 updateTempHumidInDb(temperature, humidity)
             except:

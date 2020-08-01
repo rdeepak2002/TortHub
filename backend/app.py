@@ -108,6 +108,15 @@ def reboot_server():
     except:
         return Response('Error rebooting the server.')
 
+# get request to see system stats
+# @app.route('/system_status', methods=['GET'])
+# def system_status():
+#     statvfs = os.statvfs('/home/foo/bar/baz')
+#
+#     statvfs.f_frsize * statvfs.f_blocks     # Size of filesystem in bytes
+#     statvfs.f_frsize * statvfs.f_bfree      # Actual number of free bytes
+#     statvfs.f_frsize * statvfs.f_bavail     # Number of free bytes that ordinary users are allowed to use (excl. reserved space)
+
 # return file for SSL validation
 @app.route('/.well-known/pki-validation/<challenge>')
 def verify_ssl(challenge):
