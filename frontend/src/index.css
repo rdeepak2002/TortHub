@@ -80,3 +80,8 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+/* alert */
+.alert {
+  width: 100%;
+}

@@ -113,9 +113,7 @@ def reboot_server():
 @app.route('/system_status', methods=['GET'])
 def system_status():
     total, used, free = shutil.disk_usage(__file__)
-    print(total, used, free)
-
-    return Response('Okay.')
+    return jsonify({"total": total, "used": used, "free": free})
 
 # return file for SSL validation
 @app.route('/.well-known/pki-validation/<challenge>')
