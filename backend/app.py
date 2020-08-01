@@ -98,6 +98,7 @@ def turnon_light():
 def update_server():
     try:
         subprocess.call(['git', 'pull'])
+        time.sleep(10)
         subprocess.call(['sudo', 'systemctl', 'restart', 'torthubserver.service'])
         return Response('Updated successfully.')
     except:
