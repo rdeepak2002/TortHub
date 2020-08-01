@@ -1,6 +1,7 @@
 # imports
 import os
 import json
+import subprocess
 from bson import json_util
 from importlib import import_module
 from flask import Flask, Response, jsonify, send_from_directory, send_file
@@ -9,7 +10,6 @@ from threading import Thread
 from tasks import update_temp_humid_data
 from mongodao import getTempFromDb
 from mongodao import getHumidFromDb
-from subprocess
 try:
     from rpi_rf import RFDevice
 except:
