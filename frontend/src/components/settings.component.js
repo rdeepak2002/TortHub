@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Col, Container, Row, Button } from 'react-bootstrap';
+import { Alert, Col, Container, Row, Button, Spinner } from 'react-bootstrap';
 import { Cell, Legend, PieChart, Pie, Tooltip, ResponsiveContainer } from 'recharts';
 
 import axios from 'axios';
@@ -53,6 +53,12 @@ export default class Settings extends Component {
               <Row>
                 <Alert variant='danger'>Error: {this.state.error}</Alert>
               </Row>
+            )}
+
+            {!this.state.pageLoaded && (
+              <Col className='d-flex justify-content-center'>
+                <Spinner animation='border' size="lg"/>
+              </Col>
             )}
 
             {(this.state.pageLoaded && !this.state.error) && (
