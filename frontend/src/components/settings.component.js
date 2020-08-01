@@ -9,6 +9,7 @@ export default class Settings extends Component {
     super(props);
 
     this.state = {
+      pageLoaded: false,
       loading: false,
       error: undefined,
       totalStorage: undefined,
@@ -53,50 +54,55 @@ export default class Settings extends Component {
                 <Alert variant='danger'>Error: {this.state.error}</Alert>
               </Row>
             )}
-            <Row>
-              <h2 className='about-header'>Settings</h2>
-            </Row>
-            <Row>
-              <Button disabled={this.state.loading} className='settings-btn' onClick={this.updateServer}>Update Server</Button>
-            </Row>
-            <Row>
-              <Button disabled={this.state.loading} className='settings-btn' onClick={this.rebootServer}>Reboot Server</Button>
-            </Row>
-            <Row>
-              <h2 className='about-header'>System Details</h2>
-            </Row>
-            <Row>
-              <div>Total Storage: {this.convertBytesToGb(this.state.totalStorage)}</div>
-            </Row>
-            <Row>
-              <div className='system-details'>Storage Used: {this.convertBytesToGb(this.state.storageUsed)}</div>
-            </Row>
-            <Row>
-              <div className='system-details'>Other Storage Used: {this.convertBytesToGb(this.state.otherStorageUsed)}</div>
-            </Row>
-            <Row>
-              <div className='system-details'>Storage Free: {this.convertBytesToGb(this.state.storageFree)}</div>
-            </Row>
-            <Row>
-              <ResponsiveContainer className='container' width = {300} height = {300} >
-                <PieChart>
-                  <Pie
-                  data={this.state.piChartData}
-                  labelLine={false}
-                  label={renderCustomizedLabel}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                  >
-                  {
-                    this.state.piChartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-                  }
-                  </Pie>
-                  <Legend/>
-                  <Tooltip/>
-                </PieChart>
-              </ResponsiveContainer>
-            </Row>
+
+            {(this.state.pageLoaded && !this.state.error) && (
+              <div>
+                <Row>
+                  <h2 className='about-header'>Settings</h2>
+                </Row>
+                <Row>
+                  <Button disabled={this.state.loading} className='settings-btn' onClick={this.updateServer}>Update Server</Button>
+                </Row>
+                <Row>
+                  <Button disabled={this.state.loading} className='settings-btn' onClick={this.rebootServer}>Reboot Server</Button>
+                </Row>
+                <Row>
+                  <h2 className='about-header'>System Details</h2>
+                </Row>
+                <Row>
+                  <div>Total Storage: {this.convertBytesToGb(this.state.totalStorage)}</div>
+                </Row>
+                <Row>
+                  <div className='system-details'>Storage Used: {this.convertBytesToGb(this.state.storageUsed)}</div>
+                </Row>
+                <Row>
+                  <div className='system-details'>Other Storage Used: {this.convertBytesToGb(this.state.otherStorageUsed)}</div>
+                </Row>
+                <Row>
+                  <div className='system-details'>Storage Free: {this.convertBytesToGb(this.state.storageFree)}</div>
+                </Row>
+                <Row>
+                  <ResponsiveContainer className='container' width = {300} height = {300} >
+                    <PieChart>
+                      <Pie
+                      data={this.state.piChartData}
+                      labelLine={false}
+                      label={renderCustomizedLabel}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                      >
+                      {
+                        this.state.piChartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                      }
+                      </Pie>
+                      <Legend/>
+                      <Tooltip/>
+                    </PieChart>
+                  </ResponsiveContainer>
+                </Row>
+              </div>
+            )}
           </Col>
         </Row>
       </Container>
@@ -136,10 +142,10 @@ export default class Settings extends Component {
 
     axios.get('/system_status').then(
       res => {
-        this.setState({loading: false, totalStorage: res.data.total, storageUsed: res.data.used, otherStorageUsed: res.data.total-res.data.used, storageFree: res.data.free, piChartData:[{ name: 'Free Storage', value: res.data.free }, { name: 'Storage Used', value: res.data.used }, { name: 'Other Storage Used', value: res.data.total-res.data.used }]});
+        this.setState({pageLoaded: true, loading: false, totalStorage: res.data.total, storageUsed: res.data.used, otherStorageUsed: res.data.total-res.data.used, storageFree: res.data.free, piChartData:[{ name: 'Free Storage', value: res.data.free }, { name: 'Storage Used', value: res.data.used }, { name: 'Other Storage Used', value: res.data.total-res.data.used }]});
       },
       error => {
-        this.setState({loading: false, error: error.message});
+        this.setState({pageLoaded: true, loading: false, error: error.message});
       });
   }
 
