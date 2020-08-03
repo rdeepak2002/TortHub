@@ -49,6 +49,8 @@ sudo apt-get install mongodb -y
 sudo apt-get install nginx -y
 sudo apt-get install gunicorn3 -y
 sudo apt-get install git -y
+sudo apt-get install ufw -y
+sudo apt-get install fail2ban -y
 # enable nginx and mongo
 sudo /etc/init.d/nginx start
 sudo systemctl enable mongodb
