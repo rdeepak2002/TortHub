@@ -50,7 +50,6 @@ class CameraEvent(object):
         """Invoked from each client's thread after a frame was processed."""
         self.events[get_ident()][0].clear()
 
-
 class BaseCamera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread

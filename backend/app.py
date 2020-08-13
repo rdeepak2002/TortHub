@@ -3,6 +3,7 @@ import os
 import json
 import subprocess
 import shutil
+import cv2
 from bson import json_util
 from importlib import import_module
 from flask import Flask, Response, jsonify, send_from_directory, send_file
@@ -29,10 +30,32 @@ thread.daemon = True
 thread.start()
 
 # generator for video stream
-def gen(camera):
+# def gen(camera):
+#     while True:
+#         frame = camera.get_frame()
+#         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+# second generator for video stream
+# def gen2(camera):
+#     while True:
+#         frame = camera.get_frame()
+#         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+def gen_frames(camera_id):
+
+    cap =  cv2.VideoCapture(camera_id)
+
     while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        # for cap in caps:
+        # # Capture frame-by-frame
+        success, frame = cap.read()  # read the camera frame
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
 
 # default path for react spa to work properly
 @app.route('/', defaults={'path': ''})
@@ -46,12 +69,22 @@ def serve(path):
 # route to return video stream
 @app.route('/video_feed_night')
 def video_feed_night():
-    return Response(gen(CameraNight()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen_frames(0),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# def video_feed_night():
+#     return Response(gen(CameraNight()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # route to return video stream
 @app.route('/video_feed_normal')
 def video_feed_normal():
-    return Response(gen(CameraNormal()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen_frames(1),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# def video_feed_normal():
+#     return Response(gen2(CameraNormal()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # get request for getting temperature data
 @app.route('/get_temperature', methods=['GET'])
