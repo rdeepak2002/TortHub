@@ -6,7 +6,8 @@ import shutil
 from bson import json_util
 from importlib import import_module
 from flask import Flask, Response, jsonify, send_from_directory, send_file
-from camera_opencv import Camera
+from camera_opencv import CameraNight
+from camera_opencv import CameraNormal
 from threading import Thread
 from tasks import update_temp_humid_data
 from mongodao import getTempFromDb
@@ -43,11 +44,14 @@ def serve(path):
         return send_from_directory(app.static_folder, 'index.html')
 
 # route to return video stream
-@app.route('/video_feed')
-def video_feed():
-    cameraInstance = Camera()
-    cameraInstance.set_video_source(1)
-    return Response(gen(cameraInstance), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/video_feed_night')
+def video_feed_night():
+    return Response(gen(CameraNight()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# route to return video stream
+@app.route('/video_feed_normal')
+def video_feed_normal():
+    return Response(gen(CameraNormal()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # get request for getting temperature data
 @app.route('/get_temperature', methods=['GET'])
