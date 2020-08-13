@@ -45,7 +45,9 @@ def serve(path):
 # route to return video stream
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+    cameraInstance = Camera()
+    cameraInstance.set_video_source(1)
+    return Response(gen(cameraInstance), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # get request for getting temperature data
 @app.route('/get_temperature', methods=['GET'])

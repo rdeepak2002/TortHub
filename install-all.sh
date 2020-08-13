@@ -51,10 +51,23 @@ sudo apt-get install gunicorn3 -y
 sudo apt-get install git -y
 sudo apt-get install ufw -y
 sudo apt-get install fail2ban -y
-# enable nginx and mongo
-sudo /etc/init.d/nginx start
+sudo apt-get install ruby -y
+sudo apt-get install letsencrypt -y
+# enable mongo
 sudo systemctl enable mongodb
 sudo systemctl start mongodb
+# enable nginx
+sudo /etc/init.d/nginx start
+sudo mkdir /etc/nginx/ssl/
+# enable firewall
+sudo ufw allow 22
+sudo ufw allow ssh
+sudo ufw allow 5000
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
+# enable fail2ban
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 # update and upgrade os and packages
 sudo apt-get update -y
 sudo apt-get full-upgrade -y
