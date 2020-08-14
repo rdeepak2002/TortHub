@@ -5,7 +5,7 @@ from base_camera import BaseCamera
 from datetime import datetime
 
 class Camera(BaseCamera):
-    video_source = 0
+    video_source = 1
 
     def __init__(self):
         if os.environ.get('OPENCV_CAMERA_SOURCE'):
